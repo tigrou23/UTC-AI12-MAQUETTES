@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>StarKan · Kanban Station Orbitale Vega</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body class="board-body">
+		<div class="starfield" aria-hidden="true"></div>
+		<input type="checkbox" id="drawer-left" class="drawer-toggle" />
+		<input type="checkbox" id="drawer-right" class="drawer-toggle" />
+		<input type="checkbox" id="modal-task" class="modal-toggle" />
+		<input type="checkbox" id="modal-column" class="modal-toggle" />
+
+		<header class="top-nav board-nav">
+			<a href="dashboard.html" class="brand-link">
+				<span class="brand-logo" aria-hidden="true">✶</span>
+				<span class="brand-text">
+					<strong>StarKan</strong>
+					<small>Station Orbitale Vega</small>
+				</span>
+			</a>
+			<nav class="nav-links" aria-label="Navigation principale">
+				<a href="dashboard.html">Tableau de bord</a>
+				<a href="index.html">Déconnexion</a>
+				<a href="profile.html">Profils</a>
+
+			</nav>
+			<div class="nav-actions">
+				<label class="ghost-button ghost-button--small" for="drawer-left"
+					>Infos</label
+				>
+				<label class="ghost-button ghost-button--small" for="drawer-right"
+					>Activité</label
+				>
+				<span class="sync-chip">Sync : il y a 3 min</span>
+			</div>
+		</header>
+
+		<div class="drawer drawer--left">
+			<div class="drawer-header">
+				<div>
+					<h2>Informations kanban</h2>
+					<p>Gestion des participants, permissions et sauvegardes.</p>
+				</div>
+				<label
+					class="icon-button"
+					for="drawer-left"
+					aria-label="Fermer le panneau">
+					<span aria-hidden="true">✕</span>
+				</label>
+			</div>
+			<section class="panel" aria-labelledby="owner-heading">
+				<div class="panel-header">
+					<h2 id="owner-heading">Créateur</h2>
+				</div>
+				<div class="profile-card">
+					<div class="avatar -large" aria-hidden="true">LY</div>
+					<div class="profile-details">
+						<p class="profile-name">Lyra</p>
+						<p class="profile-server">Serveur : Nova-Hub</p>
+						<p class="profile-meta">Permissions : Administratrice</p>
+					</div>
+				</div>
+				<dl class="profile-extra">
+					<div>
+						<dt>Statut</dt>
+						<dd>Disponible</dd>
+					</div>
+					<div>
+						<dt>Contact</dt>
+						<dd>lyra@nova-hub.io</dd>
+					</div>
+				</dl>
+			</section>
+
+			<section class="panel" aria-labelledby="members-heading">
+				<div class="panel-header">
+					<h2 id="members-heading">Participants</h2>
+					<span class="status-indicator">5 membres</span>
+				</div>
+				<ul class="user-list">
+					<li>
+						<div class="avatar" aria-hidden="true">MZ</div>
+						<div>
+							<p class="user-name">MaherZ</p>
+							<p class="user-meta">Éditeur · Orion-01</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Retirer</button>
+					</li>
+					<li>
+						<div class="avatar" aria-hidden="true">JR</div>
+						<div>
+							<p class="user-name">JupiterRider</p>
+							<p class="user-meta">Observateur · Orion-01</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Promouvoir</button>
+					</li>
+					<li>
+						<div class="avatar" aria-hidden="true">AL</div>
+						<div>
+							<p class="user-name">Alienor</p>
+							<p class="user-meta">Éditeur · Vega-Prime</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Suspendre</button>
+					</li>
+					<li>
+						<div class="avatar" aria-hidden="true">QS</div>
+						<div>
+							<p class="user-name">Quasar</p>
+							<p class="user-meta">Candidate · Orion-01</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Approuver</button>
+					</li>
+				</ul>
+			</section>
+
+			<section class="panel" aria-labelledby="snapshots-heading">
+				<div class="panel-header">
+					<h2 id="snapshots-heading">Sauvegardes</h2>
+					<button class="ghost-button ghost-button--small">Exporter</button>
+				</div>
+				<ul class="snapshot-list">
+					<li>
+						<div>
+							<p class="board-title">Snapshot 21 · 12:34</p>
+							<p class="board-meta">Blocage levé sur propulsion</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Charger</button>
+					</li>
+					<li>
+						<div>
+							<p class="board-title">Snapshot 20 · 11:18</p>
+							<p class="board-meta">Synchronisation P2P baseline</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Charger</button>
+					</li>
+					<li>
+						<div>
+							<p class="board-title">Snapshot 19 · 08:02</p>
+							<p class="board-meta">Audit permissions complet</p>
+						</div>
+						<button class="ghost-button ghost-button--small">Charger</button>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<div class="drawer drawer--right">
+			<div class="drawer-header">
+				<div>
+					<h2>Activité & profils</h2>
+					<p>Événements récents et accès rapides aux profils liés.</p>
+				</div>
+				<label
+					class="icon-button"
+					for="drawer-right"
+					aria-label="Fermer le panneau">
+					<span aria-hidden="true">✕</span>
+				</label>
+			</div>
+			<section class="panel timeline" aria-labelledby="activity-heading">
+				<div class="panel-header">
+					<h2 id="activity-heading">Activité récente</h2>
+					<button class="ghost-button ghost-button--small">Tout voir</button>
+				</div>
+				<ul class="timeline-list">
+					<li>
+						<div class="dot" aria-hidden="true"></div>
+						<div>
+							<p>
+								<strong>Lyra</strong> a validé l'accès de
+								<strong>MaherZ</strong>.
+							</p>
+							<span>Il y a 5 minutes</span>
+						</div>
+					</li>
+					<li>
+						<div class="dot" aria-hidden="true"></div>
+						<div>
+							<p>
+								<strong>JupiterRider</strong> a déplacé "Découverte P2P" en
+								cours.
+							</p>
+							<span>Il y a 12 minutes</span>
+						</div>
+					</li>
+					<li>
+						<div class="dot" aria-hidden="true"></div>
+						<div>
+							<p>
+								<strong>Alienor</strong> a sauvegardé une capture du kanban.
+							</p>
+							<span>Il y a 25 minutes</span>
+						</div>
+					</li>
+				</ul>
+			</section>
+
+			<section class="panel profile-preview" aria-labelledby="preview-heading">
+				<div class="panel-header">
+					<h2 id="preview-heading">Profil rapide : MaherZ</h2>
+					<a class="ghost-button ghost-button--small" href="profile.html"
+						>Ouvrir</a
+					>
+				</div>
+				<div class="profile-preview-body">
+					<div class="avatar -large" aria-hidden="true">MZ</div>
+					<dl>
+						<div>
+							<dt>Serveur local</dt>
+							<dd>Orion-01</dd>
+						</div>
+						<div>
+							<dt>Kanbans créés</dt>
+							<dd>Terraforming Mars, Nexus P2P</dd>
+						</div>
+						<div>
+							<dt>Participe à</dt>
+							<dd>Station Orbitale Vega, Constellation UX</dd>
+						</div>
+					</dl>
+				</div>
+			</section>
+		</div>
+
+		<label
+			class="drawer-overlay drawer-overlay--left"
+			for="drawer-left"></label>
+		<label
+			class="drawer-overlay drawer-overlay--right"
+			for="drawer-right"></label>
+
+		<main class="board-main" id="kanban">
+			<section class="board-header board-header--compact">
+				<div>
+					<h1>Station Orbitale Vega</h1>
+					<p>Chantier orbital · Kanban partagé entre Orion-01 et Nova-Hub.</p>
+				</div>
+				<div class="board-meta-inline">
+					<span class="chip">Lecture libre</span>
+					<span class="chip">5 membres</span>
+					<button type="button" class="ghost-button ghost-button--small board-edit-button" id="edit-mode-button" aria-pressed="false">
+						Mode édition
+					</button>
+				</div>
+			</section>
+
+			<section class="kanban-grid" aria-label="Tableau Kanban">
+				<article class="kanban-column" aria-labelledby="col-todo">
+					<header id="col-todo">
+						<span class="column-color" aria-hidden="true"></span>
+						<h3>À faire</h3>
+						<span class="count">4</span>
+					</header>
+					<div class="kanban-cards">
+						<div class="kanban-card">
+							<div class="card-actions">
+								<button
+									class="icon-button icon-button--tiny icon-button--danger card-delete"
+									type="button"
+									aria-label="Supprimer la tâche">
+									<span aria-hidden="true">🗑</span>
+								</button>
+							</div>
+							<h4>Valider les plans de modules</h4>
+							<p>
+								Revue finale avec l'équipe design et le commandant de mission.
+							</p>
+							<div class="card-footer">
+								<span class="tag">Priorité haute</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">LY</span>
+									<span class="avatar -tiny" aria-hidden="true">AL</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="kanban-card">
+							<div class="card-actions">
+								<button
+									class="icon-button icon-button--tiny icon-button--danger card-delete"
+									type="button"
+									aria-label="Supprimer la tâche">
+									<span aria-hidden="true">🗑</span>
+								</button>
+							</div>
+							<h4>Configurer la passerelle réseau</h4>
+							<p>
+								Aligner les ports de découverte pour la fédération des serveurs.
+							</p>
+							<div class="card-footer">
+								<span class="tag -accent">Synchronisation</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">JR</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="kanban-card">
+							<div class="card-actions">
+								<button
+									class="icon-button icon-button--tiny icon-button--danger card-delete"
+									type="button"
+									aria-label="Supprimer la tâche">
+									<span aria-hidden="true">🗑</span>
+								</button>
+							</div>
+							<h4>Plan de contingence météo</h4>
+							<p>
+								Prévoir un protocole d'évacuation en cas de tempête solaire.
+							</p>
+							<div class="card-footer">
+								<span class="tag">Sécurité</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">MZ</span>
+								</div>
+							</div>
+						</div>
+
+						<label class="kanban-add-card" for="modal-task">
+							<span class="kanban-add-card__icon" aria-hidden="true">＋</span>
+							<span>Ajouter une tâche</span>
+						</label>
+					</div>
+
+					<div class="column-footer">
+						<div class="column-footer__actions edit-only">
+							<button
+								class="icon-button icon-button--small icon-button--danger column-delete"
+								type="button"
+								aria-label="Supprimer la colonne">
+								<span aria-hidden="true">🗑</span>
+							</button>
+						</div>
+					</div>
+				</article>
+
+				<article class="kanban-column" aria-labelledby="col-doing">
+					<header id="col-doing">
+						<span class="column-color" aria-hidden="true"></span>
+						<h3>En cours</h3>
+						<span class="count">3</span>
+					</header>
+					<div class="kanban-cards">
+						<div class="kanban-card -active">
+							<div class="card-actions">
+								<button
+									class="icon-button icon-button--tiny icon-button--danger card-delete"
+									type="button"
+									aria-label="Supprimer la tâche">
+									<span aria-hidden="true">🗑</span>
+								</button>
+							</div>
+							<h4>Implémenter la découverte P2P</h4>
+							<p>Tester les noeuds initiaux et la redondance multi-serveurs.</p>
+							<div class="card-footer">
+								<span class="tag">Tech</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">JR</span>
+								</div>
+							</div>
+						</div>
+						<div class="kanban-card">
+							<div class="card-actions">
+								<button
+									class="icon-button icon-button--tiny icon-button--danger card-delete"
+									type="button"
+									aria-label="Supprimer la tâche">
+									<span aria-hidden="true">🗑</span>
+								</button>
+							</div>
+							<h4>Préparer la maquette UI</h4>
+							<p>
+								Finaliser la charte graphique dark mode et les variantes
+								colorées.
+							</p>
+							<div class="card-footer">
+								<span class="tag">Design</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">MZ</span>
+								</div>
+							</div>
+						</div>
+						<div class="kanban-card">
+							<div class="card-actions">
+								<button
+									class="icon-button icon-button--tiny icon-button--danger card-delete"
+									type="button"
+									aria-label="Supprimer la tâche">
+									<span aria-hidden="true">🗑</span>
+								</button>
+							</div>
+							<h4>Configurer les permissions</h4>
+							<p>
+								Définir les règles de validation pour les nouveaux utilisateurs.
+							</p>
+							<div class="card-footer">
+								<span class="tag">Sécurité</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">LY</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<label class="kanban-add-card" for="modal-task">
+						<span class="kanban-add-card__icon" aria-hidden="true">＋</span>
+						<span>Ajouter une tâche</span>
+					</label>
+					</div>
+					<div class="column-footer">
+					<div class="column-footer__actions">
+							<label class="ghost-button ghost-button--small" for="modal-column"
+								>Configurer</label
+							>
+							<button
+								class="icon-button icon-button--small icon-button--danger"
+								type="button"
+								aria-label="Supprimer la colonne">
+								<span aria-hidden="true">🗑</span>
+							</button>
+						</div>
+					</div>
+				</article>
+
+				<article class="kanban-column" aria-labelledby="col-done">
+					<header id="col-done">
+						<span class="column-color" aria-hidden="true"></span>
+						<h3>Terminé</h3>
+						<span class="count">6</span>
+					</header>
+					<div class="kanban-cards">
+						<div class="kanban-card">
+						<div class="card-actions">
+							<button
+								class="icon-button icon-button--tiny icon-button--danger card-delete"
+								type="button"
+								aria-label="Supprimer la tâche">
+								<span aria-hidden="true">🗑</span>
+							</button>
+						</div>
+							<h4>Exporter / Importer le profil</h4>
+							<p>Spécification finale et maquette des écrans.</p>
+							<div class="card-footer">
+								<span class="tag">UX</span>
+								<div class="card-avatars">
+									<span class="avatar -tiny" aria-hidden="true">MZ</span>
+								</div>
+							</div>
+					</div>
+				<label class="kanban-add-card" for="modal-task">
+					<span class="kanban-add-card__icon" aria-hidden="true">＋</span>
+					<span>Ajouter une tâche</span>
+				</label>
+				</div>
+				<div class="column-footer">
+					<div class="column-footer__actions">
+							<label class="ghost-button ghost-button--small" for="modal-column"
+								>Configurer</label
+							>
+							<button
+								class="icon-button icon-button--small icon-button--danger"
+								type="button"
+								aria-label="Supprimer la colonne">
+								<span aria-hidden="true">🗑</span>
+							</button>
+						</div>
+					</div>
+				</article>
+
+				<article
+					class="kanban-column kanban-column--empty"
+					aria-labelledby="col-new">
+					<header id="col-new">
+						<span class="column-color" aria-hidden="true"></span>
+						<h3>Nouvelle colonne</h3>
+						<span class="count">0</span>
+					</header>
+					<div class="kanban-empty">
+						<p>Aucune carte encore.</p>
+						<p class="kanban-empty__hint">
+							Configurez cette colonne ou ajoutez une première tâche pour
+							commencer.
+						</p>
+					</div>
+					<div class="column-footer">
+						<div class="column-footer__actions">
+							<label class="ghost-button ghost-button--small" for="modal-column"
+								>Créer une colonne</label
+							>
+						</div>
+					</div>
+				</article>
+			</section>
+		</main>
+
+		<div class="modal modal--task">
+			<label class="modal-overlay" for="modal-task"></label>
+			<div
+				class="modal-dialog"
+				role="dialog"
+				aria-labelledby="task-modal-title"
+				aria-modal="true">
+				<header class="modal-header">
+					<div>
+						<h2 id="task-modal-title">Créer / éditer une tâche</h2>
+						<p>
+							Renseignez les détails de la tâche et assignez la bonne colonne.
+						</p>
+					</div>
+					<label
+						class="icon-button"
+						for="modal-task"
+						aria-label="Fermer la fenêtre">
+						<span aria-hidden="true">✕</span>
+					</label>
+				</header>
+				<form class="modal-form">
+					<label class="field">
+						<span>Nom de la tâche</span>
+						<input type="text" placeholder="Installer les panneaux solaires" />
+					</label>
+					<label class="field">
+						<span>Description</span>
+						<textarea
+							placeholder="Ajouter une description détaillée, les dépendances et l'échéance."></textarea>
+					</label>
+					<label class="field">
+						<span>Colonne</span>
+						<select>
+							<option>À faire</option>
+							<option>En cours</option>
+							<option>À revoir</option>
+							<option>Terminé</option>
+						</select>
+					</label>
+					<div class="field field--color">
+						<span>Couleur de la carte</span>
+						<div
+							class="color-picker"
+							role="radiogroup"
+							aria-label="Couleur de la carte">
+							<label class="color-swatch" data-color="nebula">
+								<input type="radio" name="task-color" value="nebula" checked />
+								<span class="color-swatch__chip" aria-hidden="true"></span>
+								<span class="color-swatch__name">Nébuleuse</span>
+							</label>
+							<label class="color-swatch" data-color="aurora">
+								<input type="radio" name="task-color" value="aurora" />
+								<span class="color-swatch__chip" aria-hidden="true"></span>
+								<span class="color-swatch__name">Aurore</span>
+							</label>
+							<label class="color-swatch" data-color="pulsar">
+								<input type="radio" name="task-color" value="pulsar" />
+								<span class="color-swatch__chip" aria-hidden="true"></span>
+								<span class="color-swatch__name">Pulsar</span>
+							</label>
+							<label class="color-swatch" data-color="supernova">
+								<input type="radio" name="task-color" value="supernova" />
+								<span class="color-swatch__chip" aria-hidden="true"></span>
+								<span class="color-swatch__name">Supernova</span>
+							</label>
+							<label class="color-swatch" data-color="ion">
+								<input type="radio" name="task-color" value="ion" />
+								<span class="color-swatch__chip" aria-hidden="true"></span>
+								<span class="color-swatch__name">Ion</span>
+							</label>
+						</div>
+					</div>
+					<div class="modal-actions">
+						<button class="ghost-button ghost-button--danger" type="button">
+							Supprimer la tâche
+						</button>
+						<div class="modal-actions__primary">
+							<button class="primary-button" type="submit">Valider</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="modal modal--column">
+			<label class="modal-overlay" for="modal-column"></label>
+			<div
+				class="modal-dialog"
+				role="dialog"
+				aria-labelledby="column-modal-title"
+				aria-modal="true">
+				<header class="modal-header">
+					<div>
+						<h2 id="column-modal-title">Ajouter / éditer une colonne</h2>
+						<p>Choisissez le nom, la couleur et l'emplacement de la colonne.</p>
+					</div>
+					<label
+						class="icon-button"
+						for="modal-column"
+						aria-label="Fermer la fenêtre">
+						<span aria-hidden="true">✕</span>
+					</label>
+				</header>
+				<form class="modal-form">
+					<label class="field">
+						<span>Nom de la colonne</span>
+						<input type="text" placeholder="Tests" />
+					</label>
+					<label class="field">
+						<span>Couleur du bandeau</span>
+						<input type="color" value="#5b86e5" />
+					</label>
+					<label class="field">
+						<span>Position</span>
+						<select>
+							<option>Avant À faire</option>
+							<option>Après À faire</option>
+							<option>Après En cours</option>
+							<option>Après À revoir</option>
+							<option>Après Terminé</option>
+						</select>
+					</label>
+					<div class="modal-actions">
+						<button class="ghost-button ghost-button--danger" type="button">
+							Supprimer cette colonne
+						</button>
+						<div class="modal-actions__primary">
+							<button class="ghost-button" type="button">Dupliquer</button>
+							<button class="primary-button" type="submit">Enregistrer</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

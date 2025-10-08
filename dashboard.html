@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>StarKan · Tableau de bord</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="starfield" aria-hidden="true"></div>
+		<header class="top-nav">
+			<a href="index.html" class="brand-link">
+				<span class="brand-logo" aria-hidden="true">✶</span>
+				<span class="brand-text">
+					<strong>StarKan</strong>
+					<small>Tableau de bord</small>
+				</span>
+			</a>
+			<nav class="nav-links" aria-label="Navigation principale">
+				<a href="board.html">Kanban actif</a>
+				<a href="profile.html">Profils</a>
+				<a href="index.html">Déconnexion</a>
+			</nav>
+			<div class="nav-actions">
+				<button class="ghost-button ghost-button--small">
+					Créer un serveur
+				</button>
+				<button class="primary-button">Créer un kanban</button>
+			</div>
+		</header>
+
+		<div class="app-shell dashboard-layout">
+			<aside class="sidebar sidebar--compact" aria-label="Actions rapides">
+				<div class="brand-block">
+					<div class="brand-logo" aria-hidden="true">✶</div>
+					<div>
+						<h1 class="brand-title">StarKan</h1>
+						<p class="brand-subtitle">Orchestrateur galactique</p>
+					</div>
+				</div>
+
+				<section
+					class="panel profile-panel profile-panel--compact"
+					aria-labelledby="profile-heading">
+					<div class="panel-header">
+						<h2 id="profile-heading">Profil</h2>
+						<a class="ghost-button ghost-button--small" href="profile.html"
+							>Ouvrir</a
+						>
+					</div>
+					<div class="profile-card">
+						<div class="avatar -large" aria-hidden="true">MZ</div>
+						<div class="profile-details">
+							<p class="profile-name">MaherZ</p>
+							<p class="profile-meta">Architecte d'étoiles · Orion-01</p>
+						</div>
+					</div>
+					<div class="profile-actions">
+						<button class="primary-button">Exporter</button>
+						<button class="ghost-button">Importer</button>
+					</div>
+				</section>
+
+				<section
+					class="panel panel--compact"
+					aria-labelledby="quick-actions-heading">
+					<div class="panel-header">
+						<h2 id="quick-actions-heading">Raccourcis</h2>
+					</div>
+					<ul class="shortcut-list">
+						<li><a href="board.html">Station Orbitale Vega</a></li>
+						<li><a href="board.html#col-doing">Tâches en cours</a></li>
+						<li><a href="profile.html#archives">Exports disponibles</a></li>
+					</ul>
+				</section>
+			</aside>
+
+			<main class="main-view dashboard-main">
+				<section class="board-header board-header--compact">
+					<div>
+						<h1>Vue synthétique Orion-01</h1>
+						<p>
+							Un aperçu clair des serveurs, kanbans et utilisateurs connectés.
+						</p>
+					</div>
+					<div class="board-meta-inline">
+						<span class="chip">Serveur actif : Orion-01</span>
+						<span class="chip">Mode client/serveur</span>
+					</div>
+				</section>
+
+				<section class="board-toolbar">
+					<label>
+						<span>Changer de serveur</span>
+						<select>
+							<option>Orion-01</option>
+							<option>Vega-Prime</option>
+							<option>Nova-Hub</option>
+						</select>
+					</label>
+					<button class="ghost-button ghost-button--small">Actualiser</button>
+				</section>
+
+				<section class="summary-grid">
+					<article class="summary-card">
+						<h3>Serveurs actifs</h3>
+						<p class="summary-value">3</p>
+						<p class="summary-meta">Orion-01 · Vega-Prime · Nova-Hub</p>
+					</article>
+					<article class="summary-card">
+						<h3>Utilisateurs en ligne</h3>
+						<p class="summary-value">12</p>
+						<p class="summary-meta">4 nouveaux aujourd'hui</p>
+					</article>
+					<article class="summary-card">
+						<h3>Kanbans accessibles</h3>
+						<p class="summary-value">18</p>
+						<p class="summary-meta">8 équipes · 74 tâches actives</p>
+					</article>
+				</section>
+
+				<section class="accordion">
+					<details class="accordion-panel" open>
+						<summary>
+							<span>Serveurs connus</span>
+							<span class="badge">3</span>
+						</summary>
+						<div class="accordion-content">
+							<ul class="board-list">
+								<li class="board-list-item -active">
+									<div>
+										<p class="board-title">Orion-01</p>
+										<p class="board-meta">12 utilisateurs · 8 kanbans</p>
+									</div>
+									<button class="ghost-button ghost-button--small">
+										Se connecter
+									</button>
+								</li>
+								<li class="board-list-item">
+									<div>
+										<p class="board-title">Vega-Prime</p>
+										<p class="board-meta">8 utilisateurs · 4 kanbans</p>
+									</div>
+									<button class="ghost-button ghost-button--small">
+										Explorer
+									</button>
+								</li>
+								<li class="board-list-item">
+									<div>
+										<p class="board-title">Nova-Hub</p>
+										<p class="board-meta">5 utilisateurs · 6 kanbans</p>
+									</div>
+									<button class="ghost-button ghost-button--small">
+										Changer
+									</button>
+								</li>
+							</ul>
+						</div>
+					</details>
+
+					<details class="accordion-panel">
+						<summary>
+							<span>Utilisateurs connectés</span>
+							<span class="badge">12</span>
+						</summary>
+						<div class="accordion-content">
+							<ul class="user-list">
+								<li>
+									<div class="avatar" aria-hidden="true">AL</div>
+									<div>
+										<p class="user-name">Alienor</p>
+										<p class="user-meta">Vega-Prime · Admin</p>
+									</div>
+									<a
+										class="ghost-button ghost-button--small"
+										href="profile.html?user=alienor"
+										>Profil</a
+									>
+								</li>
+								<li>
+									<div class="avatar" aria-hidden="true">JR</div>
+									<div>
+										<p class="user-name">JupiterRider</p>
+										<p class="user-meta">Orion-01 · Éditeur</p>
+									</div>
+									<a
+										class="ghost-button ghost-button--small"
+										href="profile.html?user=jupiter"
+										>Profil</a
+									>
+								</li>
+								<li>
+									<div class="avatar" aria-hidden="true">LY</div>
+									<div>
+										<p class="user-name">Lyra</p>
+										<p class="user-meta">Nova-Hub · Lectrice</p>
+									</div>
+									<a
+										class="ghost-button ghost-button--small"
+										href="profile.html?user=lyra"
+										>Profil</a
+									>
+								</li>
+								<li>
+									<div class="avatar" aria-hidden="true">QS</div>
+									<div>
+										<p class="user-name">Quasar</p>
+										<p class="user-meta">Orion-01 · Observatrice</p>
+									</div>
+									<button class="ghost-button ghost-button--small">
+										Inviter
+									</button>
+								</li>
+							</ul>
+						</div>
+					</details>
+
+					<details class="accordion-panel">
+						<summary>
+							<span>Kanbans disponibles</span>
+							<span class="badge">18</span>
+						</summary>
+						<div class="accordion-content">
+							<ul class="board-catalog">
+								<li>
+									<div>
+										<p class="board-title">Station Orbitale Vega</p>
+										<p class="board-meta">Créé par Lyra · Permissions mixtes</p>
+									</div>
+									<div class="board-tags">
+										<span class="tag">Actif</span>
+										<a
+											class="ghost-button ghost-button--small"
+											href="board.html"
+											>Ouvrir</a
+										>
+									</div>
+								</li>
+								<li>
+									<div>
+										<p class="board-title">Terraforming Mars</p>
+										<p class="board-meta">Créé par MaherZ · Sur invitation</p>
+									</div>
+									<div class="board-tags">
+										<span class="tag -accent">Demande</span>
+										<button class="ghost-button ghost-button--small">
+											Demander accès
+										</button>
+									</div>
+								</li>
+								<li>
+									<div>
+										<p class="board-title">Constellation UX</p>
+										<p class="board-meta">Créé par Alienor · Accès libre</p>
+									</div>
+									<div class="board-tags">
+										<span class="tag">Actif</span>
+										<button class="ghost-button ghost-button--small">
+											Rejoindre
+										</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</details>
+
+					<details class="accordion-panel">
+						<summary>
+							<span>Activité récente</span>
+							<span class="badge">3</span>
+						</summary>
+						<div class="accordion-content">
+							<ul class="timeline-list">
+								<li>
+									<div class="dot" aria-hidden="true"></div>
+									<div>
+										<p>
+											<strong>Lyra</strong> a validé l'accès de
+											<strong>Quasar</strong> à Station Orbitale Vega.
+										</p>
+										<span>Il y a 5 minutes</span>
+									</div>
+								</li>
+								<li>
+									<div class="dot" aria-hidden="true"></div>
+									<div>
+										<p>
+											<strong>MaherZ</strong> a créé un snapshot du kanban
+											Terraforming Mars.
+										</p>
+										<span>Il y a 12 minutes</span>
+									</div>
+								</li>
+								<li>
+									<div class="dot" aria-hidden="true"></div>
+									<div>
+										<p>
+											<strong>Alienor</strong> a renvoyé "Validation protocole"
+											en To Do.
+										</p>
+										<span>Il y a 30 minutes</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</details>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
